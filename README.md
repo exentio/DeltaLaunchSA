@@ -1,5 +1,5 @@
 # DeltaLaunch Strikes Again
-# (aka "My OCD ordered me to make this program")
+## (aka "My OCD ordered me to make this program")
 My first time doing a C++ application.
 This will be painful. REALLY painful.
 At the moment, it loads a config.ini, if it's a path it launches the program.
