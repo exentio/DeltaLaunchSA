@@ -2,7 +2,7 @@
 ### (aka "My OCD ordered me to make this program")
 My first time doing a C++ application.
 This will be painful. REALLY painful.
-At the moment, it loads a config.ini, shows you the section, and makes you choose what you wanna run; if the key is a path, it launches the program.
+At the moment, it loads a config.ini, shows you the sections, and makes you choose what you wanna run; if the key is a path (litterally, "path =C://yourstuff"), it launches the program.
 
 ## To Do
 * ~~Don't cry immediately: **MISHON COMPREE**~~
