@@ -4,7 +4,7 @@ This will be painful. REALLY painful.
 At the moment, it loads a config.ini, if it's a path it launches the program.
 
 ## To Do
-* ~Don't cry immediately: **MISHON COMPREE**~
+* ~~Don't cry immediately: **MISHON COMPREE**~~
 * Launch apps: **dun**
 * Load config.ini: **dun**
 * Print section of the config.ini except settings: **dun**
