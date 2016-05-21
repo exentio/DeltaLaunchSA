@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\essentio\desktop\deltalaunchsa\main.cpp(30): warning C4018: '<': errata corrispondenza tra signed e unsigned
+  DeltaLaunchSA.vcxproj -> C:\Users\Essentio\Desktop\DeltaLaunchSA\Debug\DeltaLaunchSA.exe
+  DeltaLaunchSA.vcxproj -> C:\Users\Essentio\Desktop\DeltaLaunchSA\Debug\DeltaLaunchSA.pdb (Partial PDB)
