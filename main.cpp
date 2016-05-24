@@ -4,9 +4,9 @@
 #include <Windows.h> // Questa e' la cosa piu' brutta che vedrai nella tua vita.
 #include "SimpleIni.h"
 
-void openApplication(const char* path)
+void openApplication(const char* path, const char* par)
 {
-	ShellExecute(NULL, "open", path, NULL, NULL, SW_SHOW);
+	ShellExecute(NULL, "open", path, par, NULL, SW_SHOW);
 }
 
 int main()
@@ -39,11 +39,16 @@ int main()
 	std::vector<CSimpleIni::Entry> key;
 	key.push_back(IKey.front());
 	const char* value = ini.GetValue(selection, key.at(0).pItem, NULL);
-	std::cout << value;
+	const char* browser = ini.GetValue("Settings", "browser", NULL);
 	if (strcmp(key.at(0).pItem, "path") == 0)
-		openApplication(value);
+		openApplication(value, NULL);
 	else if (strcmp(key.at(0).pItem, "url") == 0)
-		std::cout << "can't";
-		// openApplication(value); aggiungere parte del browser
+	{
+		std::cout << browser << " " << value;
+		getchar();
+		getchar();
+		openApplication(browser, value);
+		
+	}
 	return 0;
 }
