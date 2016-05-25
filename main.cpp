@@ -38,11 +38,25 @@ int main()
 	ini.GetAllKeys(selection, IKey);
 	std::vector<CSimpleIni::Entry> key;
 	key.push_back(IKey.front());
-	const char* value = ini.GetValue(selection, key.at(0).pItem, NULL);
+	std::string value = ini.GetValue(selection, key.at(0).pItem, NULL);
 	const char* browser = ini.GetValue("Settings", "browser", NULL);
 	if (strcmp(key.at(0).pItem, "path") == 0)
-		openApplication(value);
+		openApplication(value.c_str());
 	else if (strcmp(key.at(0).pItem, "url") == 0)
-		openApplication(value);
+	{
+		if (value.compare(0, 7, "http://") > 0)
+		{
+			if (!(value.compare(0, 8, "https://") > 0))
+			{
+				value.replace(0, 8, "");
+			}
+			value.insert(0, "http://");
+			openApplication(value.c_str());
+		}
+		else
+		{
+			openApplication(value.c_str());
+		}
+	}
 	return 0;
 }
