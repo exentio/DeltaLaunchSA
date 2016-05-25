@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <cstring>
-#include <Windows.h> // Questa e' la cosa piu' brutta che vedrai nella tua vita.
+#include <stdexcept>
+#include <Windows.h>
 #include "SimpleIni.h"
 
 void openApplication(const char* path)
@@ -18,7 +18,6 @@ int main()
 	ini.LoadFile("config.ini");
 	CSimpleIni::TNamesDepend Isections;
 	ini.GetAllSections(Isections);
-	// sections.pop_front();
 	std::vector<CSimpleIni::Entry> sections;
 	Isections.sort(CSimpleIni::Entry::LoadOrder());
 	while (!Isections.empty())
@@ -31,8 +30,21 @@ int main()
 	{
 		std::cout << i << ". " << sections.at(i).pItem << '\n';
 	}
-	std::cout << "Inserisci un numero: ";
-	std::cin >> c;
+	std::cout << "Choice: ";
+	try
+	{
+		std::cin >> c;
+		if (!(c < sections.size() && c > 0))
+		{
+			throw std::range_error("Input non valid, exiting.\n\n");
+		}
+	}
+	catch (const std::exception &err)
+	{
+		std::cout << err.what();
+		system("pause");
+		return 1;
+	}
 	selection = (char*) sections.at(c).pItem;
 	CSimpleIni::TNamesDepend IKey;
 	ini.GetAllKeys(selection, IKey);

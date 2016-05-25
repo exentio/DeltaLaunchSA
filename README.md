@@ -22,7 +22,7 @@ Because I have a lot of programs pinned in the taskbar, and it hurts my OCD. I'l
 * Launch urls from config.ini: **dun**
 * Automatically add "http://" when missing: **dun**
 * Automatically add double backslashes to paths: *dun*
-* Add Errors™: *to do*
+* Add Errors™: **dun**
 * Make it run in background to launch it almost immediately: *to do*
 * Keyboard shortcut: *to do but I'm not sure I want to deal with this ~~**shit**~~horrible thing*
 * GUI: *to do (but not a priority, from CLI it would be faster)*
