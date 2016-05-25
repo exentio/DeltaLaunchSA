@@ -45,13 +45,12 @@ int main()
 		system("pause");
 		return 1;
 	}
-	selection = (char*) sections.at(c).pItem;
+	selection = (char*)sections.at(c).pItem;
 	CSimpleIni::TNamesDepend IKey;
 	ini.GetAllKeys(selection, IKey);
 	std::vector<CSimpleIni::Entry> key;
 	key.push_back(IKey.front());
 	std::string value = ini.GetValue(selection, key.at(0).pItem, NULL);
-	const char* browser = ini.GetValue("Settings", "browser", NULL);
 	if (strcmp(key.at(0).pItem, "path") == 0)
 	{
 		int i = 0;
