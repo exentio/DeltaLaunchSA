@@ -24,7 +24,7 @@ Because I have a lot of programs pinned in the taskbar, and it hurts my OCD. I'l
 * Automatically add double backslashes to paths: *dun*
 * Add Errors™: *to do*
 * Make it run in background to launch it almost immediately: *to do*
-* Keyboard shortcut: *to do but I'm not sure I want to deal with this ~~**shit**~~horrible thing*
+* Keyboard shortcut: *to do but I'm not sure I want to deal with this ~~shit~~ horrible thing*
 * GUI: *to do (but not a priority, from CLI it would be faster)*
 * Set GUI icons: *as above*
 * Set GUI columns: *as above*
