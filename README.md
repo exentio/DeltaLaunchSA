@@ -7,6 +7,8 @@ REALLY painful.
 
 At the moment, it loads a config.ini, shows you the sections, and makes you choose what you wanna run; if the key is a path (literally, "path = C://yourstuff"), it launches the program, if it's a url ("url = example.com") it opens it in your default browser.
 
+I'm using [SimpleIni](https://github.com/brofield/simpleini) to parse the config file.
+
 ## Why
 Because I have a lot of programs pinned in the taskbar, and it hurts my OCD. I'll add urls just because I can.
 
@@ -20,6 +22,7 @@ Because I have a lot of programs pinned in the taskbar, and it hurts my OCD. I'l
 * Launch urls from config.ini: **dun**
 * Automatically add "http://" when missing: **dun**
 * Automatically add double backslashes to paths: *to do*
+* Add Errors™: *to do*
 * Make it run in background to launch it almost immediately: *to do*
 * Keyboard shortcut: *to do but I'm not sure I want to deal with this ~~shit~~horrible thing*
 * GUI: *to do (but not a priority, from CLI it would be faster)*
