@@ -41,7 +41,16 @@ int main()
 	std::string value = ini.GetValue(selection, key.at(0).pItem, NULL);
 	const char* browser = ini.GetValue("Settings", "browser", NULL);
 	if (strcmp(key.at(0).pItem, "path") == 0)
+	{
+		int i = 0;
+		while (value[i] != '\0')
+		{
+			if (value[i] == '\\' || value[i] == '/')
+				value[i] = '\\\\';
+			i++;
+		}
 		openApplication(value.c_str());
+	}
 	else if (strcmp(key.at(0).pItem, "url") == 0)
 	{
 		if (value.compare(0, 7, "http://") > 0)
