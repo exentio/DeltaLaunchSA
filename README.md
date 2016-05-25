@@ -18,7 +18,7 @@ Because I have a lot of programs pinned in the taskbar, and it hurts my OCD. I'l
 * Print section of the config.ini except settings: **dun**
 * Launch programs from config.ini: *I cant believe that but* **dun**
 * Launch urls from config.ini: **dun**
-* Automatically add "http://" when missing: *to do*
+* Automatically add "http://" when missing: **dun**
 * Automatically add double backslashes to paths: *to do*
 * Make it run in background to launch it almost immediately: *to do*
 * Keyboard shortcut: *to do but I'm not sure I want to deal with this ~~shit~~horrible thing*
