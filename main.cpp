@@ -67,8 +67,8 @@ int main()
 	ini.GetAllKeys(selection, IKey);
 	std::vector<CSimpleIni::Entry> key;
 	key.push_back(IKey.front());
-	std::string relative = ini.GetValue("Settings", key.at(0).pItem, NULL);
-	std::string x86relative = ini.GetValue("Settings", key.at(1).pItem, NULL);
+	std::string relative = ini.GetValue("Settings", "relativepath", NULL);
+	std::string x86relative = ini.GetValue("Settings", "relativepathX86", NULL);
 	relative = doubleslasher(relative);
 	x86relative = doubleslasher(x86relative);
 	std::string value = ini.GetValue(selection, key.at(0).pItem, NULL);
@@ -77,18 +77,12 @@ int main()
 		value = doubleslasher(value);
 		value.insert(0, relative);
 		value = quoter(value);
-		std::cout << value;
-		getchar();
-		getchar();
 		openApplication(value.c_str());
 	}
 	else if (strcmp(key.at(0).pItem, "cpath") == 0)
 	{
 		value = doubleslasher(value);
 		value = quoter(value);
-		std::cout << value;
-		getchar();
-		getchar();
 		openApplication(value.c_str());
 	}
 	else if (strcmp(key.at(0).pItem, "x86path") == 0)
@@ -96,9 +90,6 @@ int main()
 		value = doubleslasher(value);
 		value.insert(0, x86relative);
 		value = quoter(value);
-		std::cout << value;
-		getchar();
-		getchar();
 		openApplication(value.c_str());
 	}
 	else if (strcmp(key.at(0).pItem, "url") == 0)
@@ -119,16 +110,9 @@ int main()
 	}
 	else
 	{
-		try
-		{
-			throw "Key in config.ini not valid, check your configuration file.\n\n";
-		}
-		catch (const std::exception &err)
-		{
-			std::cout << err.what();
-			system("pause");
-			return 1;
-		}
+		std::cout << "Key in config.ini not valid, check your configuration file.\n\n";
+		system("pause");
+		return 1;
 	}
 	return 0;
 }
