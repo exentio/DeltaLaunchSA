@@ -9,7 +9,7 @@ void openApplication(const char* command)
 	ShellExecute(NULL, "open", command, NULL, NULL, SW_SHOW);
 }
 
-// Quotes paths so you can put spaces in your paths
+// Quotes paths so you can put spaces
 std::string quoter(std::string keyvalue)
 {
 	keyvalue.insert(0, "\"");
@@ -45,17 +45,17 @@ void matcher(std::string keyvalue)
 
 int main()
 {
-	// Load config file
+	// Loads config file
 	char* selection;
 	CSimpleIniA ini;
 	ini.SetUnicode();
 	ini.LoadFile("config.ini");
 
-	// Get .ini sections
+	// Gets .ini sections
 	CSimpleIni::TNamesDepend Isections;
 	ini.GetAllSections(Isections);
 	
-	// Sort them in load order
+	// Sorts them in load order
 	Isections.sort(CSimpleIni::Entry::LoadOrder());
 	std::vector<CSimpleIni::Entry> sections;
 	while (!Isections.empty())
@@ -64,13 +64,13 @@ int main()
 		Isections.pop_front();
 	}
 
-	// Print sections
+	// Prints sections
 	for (int i = 1; i < sections.size(); ++i)
 	{
 		std::cout << i << ". " << sections.at(i).pItem << '\n';
 	}
 
-	// Choose what you wanna launch, throws exception if input is not valid
+	// Makes you choose what you wanna launch, throws exception if input is not valid
 	std::cout << "Choice: ";
 	int choice;
 	try
