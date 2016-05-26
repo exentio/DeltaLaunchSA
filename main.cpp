@@ -69,6 +69,7 @@ int main()
 		}
 		value.insert(0, relative);
 		value = quoter(value);
+		std::cout << value;
 		getchar();
 		getchar();
 		openApplication(value.c_str());
@@ -95,6 +96,7 @@ int main()
 		}
 		value.insert(0, x86relative);
 		value = quoter(value);
+		std::cout << value;
 		getchar();
 		getchar();
 		openApplication(value.c_str());
