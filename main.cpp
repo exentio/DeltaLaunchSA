@@ -53,12 +53,10 @@ int main()
 	std::string value = ini.GetValue(selection, key.at(0).pItem, NULL);
 	if (strcmp(key.at(0).pItem, "path") == 0)
 	{
-		int i = 0;
-		while (value[i] != '\0')
+		for (int i = 0; value[i] != '\0'; ++i)
 		{
 			if (value[i] == '\\' || value[i] == '/')
 				value[i] = '\\\\';
-			i++;
 		}
 		openApplication(value.c_str());
 	}
