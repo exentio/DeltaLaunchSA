@@ -1,7 +1,7 @@
 ﻿  main.cpp
-c:\users\essentio\desktop\deltalaunchsa\main.cpp(24): warning C4305: '=': troncamento da 'int' a 'char'
-c:\users\essentio\desktop\deltalaunchsa\main.cpp(24): warning C4309: '=': troncamento di valore costante
-c:\users\essentio\desktop\deltalaunchsa\main.cpp(45): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\essentio\desktop\deltalaunchsa\main.cpp(53): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\essentio\desktop\deltalaunchsa\main.cpp(26): warning C4305: '=': troncamento da 'int' a 'char'
+c:\users\essentio\desktop\deltalaunchsa\main.cpp(26): warning C4309: '=': troncamento di valore costante
+c:\users\essentio\desktop\deltalaunchsa\main.cpp(68): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\essentio\desktop\deltalaunchsa\main.cpp(79): warning C4018: '<': errata corrispondenza tra signed e unsigned
   DeltaLaunchSA.vcxproj -> C:\Users\Essentio\Desktop\DeltaLaunchSA\Debug\DeltaLaunchSA.exe
   DeltaLaunchSA.vcxproj -> C:\Users\Essentio\Desktop\DeltaLaunchSA\Debug\DeltaLaunchSA.pdb (Partial PDB)
