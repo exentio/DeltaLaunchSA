@@ -62,34 +62,41 @@ int main()
 	std::string value = ini.GetValue(selection, key.at(0).pItem, NULL);
 	if (strcmp(key.at(0).pItem, "path") == 0)
 	{
-		for (int i = 1; i < sections.size(); ++i)
-		{
-			std::cout << i << ". " << sections.at(i).pItem << '\n';
-		}
-	}
-	else if (strcmp(key.at(0).pItem, "cpath") == 0)
-	{
-		int i = 0;
-		while (value[i] != '\0')
+		for (int i = 0; value[i] != '\0'; ++i)
 		{
 			if (value[i] == '\\' || value[i] == '/')
 				value[i] = '\\\\';
-			i++;
+		}
+		value.insert(0, relative);
+		value = quoter(value);
+		getchar();
+		getchar();
+		openApplication(value.c_str());
+	}
+	else if (strcmp(key.at(0).pItem, "cpath") == 0)
+	{
+		for (int i = 0; value[i] != '\0'; ++i)
+		{
+			if (value[i] == '\\' || value[i] == '/')
+				value[i] = '\\\\';
 		}
 		value = quoter(value);
+		std::cout << value;
+		getchar();
+		getchar();
 		openApplication(value.c_str());
 	}
 	else if (strcmp(key.at(0).pItem, "x86path") == 0)
 	{
-		int i = 0;
-		while (value[i] != '\0')
+		for (int i = 0; value[i] != '\0'; ++i)
 		{
 			if (value[i] == '\\' || value[i] == '/')
 				value[i] = '\\\\';
-			i++;
 		}
 		value.insert(0, x86relative);
 		value = quoter(value);
+		getchar();
+		getchar();
 		openApplication(value.c_str());
 	}
 	else if (strcmp(key.at(0).pItem, "url") == 0)
