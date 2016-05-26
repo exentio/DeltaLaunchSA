@@ -28,7 +28,7 @@ std::string doubleslasher(std::string value)
 
 int main()
 {
-	int c;
+	int choice;
 	char* selection;
 	CSimpleIniA ini;
 	ini.SetUnicode();
@@ -42,7 +42,6 @@ int main()
 		sections.push_back(Isections.front());
 		Isections.pop_front();
 	}
-
 	for (int i = 1; i < sections.size(); ++i)
 	{
 		std::cout << i << ". " << sections.at(i).pItem << '\n';
@@ -50,8 +49,8 @@ int main()
 	std::cout << "Choice: ";
 	try
 	{
-		std::cin >> c;
-		if (!(c < sections.size() && c > 0))
+		std::cin >> choice;	
+		if (!(choice < sections.size() && choice > 0))
 		{
 			throw std::range_error("Input non valid, exiting.\n\n");
 		}
@@ -62,7 +61,7 @@ int main()
 		system("pause");
 		return 1;
 	}
-	selection = (char*)sections.at(c).pItem;
+	selection = (char*)sections.at(choice).pItem;
 	CSimpleIni::TNamesDepend IKey;
 	ini.GetAllKeys(selection, IKey);
 	std::vector<CSimpleIni::Entry> key;
@@ -79,12 +78,6 @@ int main()
 		value = quoter(value);
 		openApplication(value.c_str());
 	}
-	else if (strcmp(key.at(0).pItem, "cpath") == 0)
-	{
-		value = doubleslasher(value);
-		value = quoter(value);
-		openApplication(value.c_str());
-	}
 	else if (strcmp(key.at(0).pItem, "x86path") == 0)
 	{
 		value = doubleslasher(value);
@@ -92,19 +85,21 @@ int main()
 		value = quoter(value);
 		openApplication(value.c_str());
 	}
+	else if (strcmp(key.at(0).pItem, "cpath") == 0)
+	{
+		value = doubleslasher(value);
+		value = quoter(value);
+		openApplication(value.c_str());
+	}
 	else if (strcmp(key.at(0).pItem, "url") == 0)
 	{
-		if (value.compare(0, 7, "http://") > 0)
+		if (value.compare(0, 7, "http://") == 0 || value.compare(0, 8, "https://") == 0)
 		{
-			if (!(value.compare(0, 8, "https://") > 0))
-			{
-				value.replace(0, 8, "");
-			}
-			value.insert(0, "http://");
 			openApplication(value.c_str());
 		}
 		else
 		{
+			value.insert(0, "http://");
 			openApplication(value.c_str());
 		}
 	}
