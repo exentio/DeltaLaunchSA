@@ -16,6 +16,16 @@ std::string quoter(std::string value)
 	return value;
 }
 
+std::string doubleslasher(std::string value)
+{
+	for (int i = 0; value[i] != '\0'; ++i)
+	{
+		if (value[i] == '\\' || value[i] == '/')
+			value[i] = '\\\\';
+	}
+	return value;
+}
+
 int main()
 {
 	int c;
@@ -59,14 +69,12 @@ int main()
 	key.push_back(IKey.front());
 	std::string relative = ini.GetValue("Settings", key.at(0).pItem, NULL);
 	std::string x86relative = ini.GetValue("Settings", key.at(1).pItem, NULL);
+	relative = doubleslasher(relative);
+	x86relative = doubleslasher(x86relative);
 	std::string value = ini.GetValue(selection, key.at(0).pItem, NULL);
 	if (strcmp(key.at(0).pItem, "path") == 0)
 	{
-		for (int i = 0; value[i] != '\0'; ++i)
-		{
-			if (value[i] == '\\' || value[i] == '/')
-				value[i] = '\\\\';
-		}
+		value = doubleslasher(value);
 		value.insert(0, relative);
 		value = quoter(value);
 		std::cout << value;
@@ -76,11 +84,7 @@ int main()
 	}
 	else if (strcmp(key.at(0).pItem, "cpath") == 0)
 	{
-		for (int i = 0; value[i] != '\0'; ++i)
-		{
-			if (value[i] == '\\' || value[i] == '/')
-				value[i] = '\\\\';
-		}
+		value = doubleslasher(value);
 		value = quoter(value);
 		std::cout << value;
 		getchar();
@@ -89,11 +93,7 @@ int main()
 	}
 	else if (strcmp(key.at(0).pItem, "x86path") == 0)
 	{
-		for (int i = 0; value[i] != '\0'; ++i)
-		{
-			if (value[i] == '\\' || value[i] == '/')
-				value[i] = '\\\\';
-		}
+		value = doubleslasher(value);
 		value.insert(0, x86relative);
 		value = quoter(value);
 		std::cout << value;
