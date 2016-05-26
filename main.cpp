@@ -9,6 +9,13 @@ void openApplication(const char* path)
 	ShellExecute(NULL, "open", path, NULL, NULL, SW_SHOW);
 }
 
+std::string quoter(std::string value)
+{
+	value.insert(0, "\"");
+	value += "\"";
+	return value;
+}
+
 int main()
 {
 	int c;
@@ -50,14 +57,39 @@ int main()
 	ini.GetAllKeys(selection, IKey);
 	std::vector<CSimpleIni::Entry> key;
 	key.push_back(IKey.front());
+	std::string relative = ini.GetValue("Settings", key.at(0).pItem, NULL);
+	std::string x86relative = ini.GetValue("Settings", key.at(1).pItem, NULL);
 	std::string value = ini.GetValue(selection, key.at(0).pItem, NULL);
 	if (strcmp(key.at(0).pItem, "path") == 0)
 	{
-		for (int i = 0; value[i] != '\0'; ++i)
+		for (int i = 1; i < sections.size(); ++i)
+		{
+			std::cout << i << ". " << sections.at(i).pItem << '\n';
+		}
+	}
+	else if (strcmp(key.at(0).pItem, "cpath") == 0)
+	{
+		int i = 0;
+		while (value[i] != '\0')
 		{
 			if (value[i] == '\\' || value[i] == '/')
 				value[i] = '\\\\';
+			i++;
 		}
+		value = quoter(value);
+		openApplication(value.c_str());
+	}
+	else if (strcmp(key.at(0).pItem, "x86path") == 0)
+	{
+		int i = 0;
+		while (value[i] != '\0')
+		{
+			if (value[i] == '\\' || value[i] == '/')
+				value[i] = '\\\\';
+			i++;
+		}
+		value.insert(0, x86relative);
+		value = quoter(value);
 		openApplication(value.c_str());
 	}
 	else if (strcmp(key.at(0).pItem, "url") == 0)
@@ -74,6 +106,19 @@ int main()
 		else
 		{
 			openApplication(value.c_str());
+		}
+	}
+	else
+	{
+		try
+		{
+			throw "Key in config.ini not valid, check your configuration file.\n\n";
+		}
+		catch (const std::exception &err)
+		{
+			std::cout << err.what();
+			system("pause");
+			return 1;
 		}
 	}
 	return 0;
