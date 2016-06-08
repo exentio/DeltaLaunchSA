@@ -25,7 +25,7 @@ Because I have a lot of programs pinned in the taskbar, and it hurts my OCD. I'l
 * Automatically add quotes so you can put spaces inside the config file: **dun**
 * Add Errors™: **dun**
 * Add relative paths for both "Program Files" and "Program Files (x86)": **dun**
-* Make it run in background to launch it almost immediately: *to do*
+* Make it run in background to launch it almost immediately: *realized that is not necessary, it's already insanely fast*
 * Keyboard shortcut: *to do but I'm not sure I want to deal with this ~~shit~~ horrible thing*
 * GUI: *to do (but not a priority, from CLI everything's faster)*
 * Set GUI icons: *as above*

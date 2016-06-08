@@ -54,7 +54,7 @@ int main()
 	// Gets .ini sections
 	CSimpleIni::TNamesDepend Isections;
 	ini.GetAllSections(Isections);
-	
+
 	// Sorts them in load order
 	Isections.sort(CSimpleIni::Entry::LoadOrder());
 	std::vector<CSimpleIni::Entry> sections;
@@ -63,20 +63,29 @@ int main()
 		sections.push_back(Isections.front());
 		Isections.pop_front();
 	}
-
+		
 	// Prints sections
 	for (int i = 1; i < sections.size(); ++i)
 	{
 		std::cout << i << ". " << sections.at(i).pItem << '\n';
 	}
+	std::cout << "\n0. Exit\n\n";
 
-	// Makes you choose what you wanna launch, throws exception if input is not valid
+	// Makes you choose what you wanna launch
 	std::cout << "Choice: ";
 	int choice;
+
+	// Throws exception if input is not valid
 	try
 	{
 		std::cin >> choice;
-		if (!(choice < sections.size() && choice > 0))
+
+		// Exits the program if the user wrote 0
+		if (choice == 0)
+			return 0;
+
+		// Check if the choosen number is bigger than the maximum
+		else if (!(choice < sections.size()))
 		{
 			throw std::range_error("Input non valid, exiting.\n\n");
 		}
@@ -85,7 +94,6 @@ int main()
 	{
 		std::cout << err.what();
 		system("pause");	// "Press a key to continue . . . "
-		return 1;
 	}
 
 	// Puts chosen section in selection
@@ -109,7 +117,7 @@ int main()
 	std::string keyvalue = ini.GetValue(selection, key.at(0).pItem, NULL);
 
 	// Matching
-	
+
 	// Launches program from "Program Files"
 	if (strcmp(key.at(0).pItem, "path") == 0)
 	{
@@ -149,8 +157,6 @@ int main()
 	{
 		std::cout << "Key in config.ini not valid, check your configuration file.\n\n";
 		system("pause");
-		return 1;
 	}
-
 	return 0;	 // Goodbye
 }
