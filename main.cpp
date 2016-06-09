@@ -4,42 +4,41 @@
 #include <Windows.h>
 #include "SimpleIni.h"
 
+// I hate WinApi
 void openApplication(const char* command)
 {
 	ShellExecute(NULL, "open", command, NULL, NULL, SW_SHOW);
 }
 
 // Quotes paths so you can put spaces
-std::string quoter(std::string keyvalue)
+void quoter(std::string& keyvalue)
 {
 	keyvalue.insert(0, "\"");
 	keyvalue += "\"";
-	return keyvalue;
 }
 
 // Doubles backslashes to get actual backslashes, or converts *nix paths to Windows-style paths (with double backslashes of course)
-std::string doubleslasher(std::string keyvalue)
+void doubleslasher(std::string& keyvalue)
 {
 	for (int i = 0; keyvalue[i] != '\0'; ++i)
 	{
 		if (keyvalue[i] == '\\' || keyvalue[i] == '/')
 			keyvalue[i] = '\\\\';
 	}
-	return keyvalue;
 }
 
-void matcher(std::string keyvalue, std::string relativepath)
+void matcher(std::string& keyvalue, const std::string& relativepath)
 {
-	keyvalue = doubleslasher(keyvalue);
 	keyvalue.insert(0, relativepath);
-	keyvalue = quoter(keyvalue);
+	doubleslasher(keyvalue);
+	quoter(keyvalue);
 	openApplication(keyvalue.c_str());
 }
 
-void matcher(std::string keyvalue)
+void matcher(std::string& keyvalue)
 {
-	keyvalue = doubleslasher(keyvalue);
-	keyvalue = quoter(keyvalue);
+	doubleslasher(keyvalue);
+	quoter(keyvalue);
 	openApplication(keyvalue.c_str());
 }
 
@@ -63,7 +62,7 @@ int main()
 		sections.push_back(Isections.front());
 		Isections.pop_front();
 	}
-		
+
 	// Prints sections
 	for (int i = 1; i < sections.size(); ++i)
 	{
@@ -85,7 +84,7 @@ int main()
 			return 0;
 
 		// Check if the choosen number is bigger than the maximum
-		else if (!(choice < sections.size()))
+		else if (!(choice < sections.size()) || std::cin.fail())
 		{
 			throw std::range_error("Input non valid, exiting.\n\n");
 		}
@@ -94,6 +93,7 @@ int main()
 	{
 		std::cout << err.what();
 		system("pause");	// "Press a key to continue . . . "
+		return 1;
 	}
 
 	// Puts chosen section in selection
@@ -106,12 +106,8 @@ int main()
 	key.push_back(IKey.front());
 
 	// Gets relatives
-	std::string relative = ini.GetValue("Settings", "relativepath", NULL);
-	std::string x86relative = ini.GetValue("Settings", "relativepathX86", NULL);
-
-	// If necessary doubles backslashes to get actual backslashes, or converts *nix paths in Windows paths
-	relative = doubleslasher(relative);
-	x86relative = doubleslasher(x86relative);
+	const std::string relative = ini.GetValue("Settings", "relativepath", NULL);
+	const std::string x86relative = ini.GetValue("Settings", "relativepathX86", NULL);
 
 	// Gets the value of the key
 	std::string keyvalue = ini.GetValue(selection, key.at(0).pItem, NULL);
@@ -157,6 +153,8 @@ int main()
 	{
 		std::cout << "Key in config.ini not valid, check your configuration file.\n\n";
 		system("pause");
+		return 1;
 	}
+
 	return 0;	 // Goodbye
 }
